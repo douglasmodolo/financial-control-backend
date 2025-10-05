@@ -1,3 +1,4 @@
+using FinancialControl.Application.Interfaces;
 using FinancialControl.Domain.Repositories;
 using FinancialControl.Infrastructure.Persistence;
 using FinancialControl.Infrastructure.Repositories;
@@ -10,6 +11,8 @@ var connectionString = builder.Configuration.GetConnectionString("FinancialContr
 // Add services to the container.
 builder.Services.AddDbContext<FinancialControlDbContext>(options =>
     options.UseNpgsql(connectionString));
+
+builder.Services.AddScoped<IApplicationDbContext, FinancialControlDbContext>();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
