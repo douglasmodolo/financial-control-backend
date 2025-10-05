@@ -1,3 +1,4 @@
+using FinancialControl.Api.Middleware;
 using FinancialControl.Application.Interfaces;
 using FinancialControl.Domain.Entities;
 using FinancialControl.Domain.Repositories;
@@ -67,6 +68,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
