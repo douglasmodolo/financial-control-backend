@@ -2,12 +2,14 @@
 using FinancialControl.Application.UseCases.Categories.Commands;
 using FinancialControl.Application.UseCases.Categories.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinancialControl.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoriesController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -21,8 +23,7 @@ namespace FinancialControl.Api.Controllers
         {
             var command = new CreateCategoryCommand
             {
-                Name = dto.Name,
-                UserId = dto.UserId
+                Name = dto.Name
             };
 
             var categoryId = await _mediator.Send(command);
