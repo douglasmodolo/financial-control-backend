@@ -67,5 +67,15 @@ namespace FinancialControl.Api.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTransaction(Guid id)
+        {
+            var command = new DeleteTransactionCommand(id);
+
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
     }
 }
