@@ -23,5 +23,14 @@ namespace FinancialControl.Domain.Entities
 
         public Category Category { get; private set; }
         public User User { get; private set; }
+
+        public void Update(string title, decimal amount, TransactionType type, Guid categoryId)
+        {
+            Title = title;
+            Amount = amount;
+            Type = type;
+            CategoryId = categoryId;
+            UpdatedAt = DateTime.UtcNow;
+        }
     }
 }
