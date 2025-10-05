@@ -1,20 +1,19 @@
-﻿using FinancialControl.Domain.Common;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace FinancialControl.Domain.Entities
 {
-    public class User : BaseEntity
+    public class User : IdentityUser<Guid>
     {
-        public User(string fullName, string email)
-        {
-            FullName = fullName;
-            Email = email;
-        }
-
         public string FullName { get; private set; }
-        public string Email { get; private set; }
-        public string? PasswordHash { get; private set; } // Pode ser nulo se usar login social
 
         public ICollection<Category> Categories { get; private set; } = new List<Category>();
         public ICollection<Transaction> Transactions { get; private set; } = new List<Transaction>();
+
+        public User(string fullName, string email, string userName)
+        {
+            FullName = fullName;
+            Email = email;
+            UserName = userName;
+        }
     }
 }
