@@ -8,7 +8,5 @@ namespace FinancialControl.Application.DTOs.Transactions
         public decimal Amount { get; set; }
         public TransactionType Type { get; set; }
         public Guid CategoryId { get; set; }
-
-        public Guid UserId { get; set; }
     }
 }

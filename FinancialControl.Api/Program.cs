@@ -31,6 +31,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ILoggedUserService, FinancialControl.Api.Services.LoggedUserService>();
+
 builder.Services.AddIdentity<User, IdentityRole<Guid>>()
     .AddEntityFrameworkStores<FinancialControlDbContext>()
     .AddDefaultTokenProviders();

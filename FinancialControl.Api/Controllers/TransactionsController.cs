@@ -2,12 +2,14 @@
 using FinancialControl.Application.UseCases.Transactions.Commands;
 using FinancialControl.Application.UseCases.Transactions.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinancialControl.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TransactionsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -25,8 +27,7 @@ namespace FinancialControl.Api.Controllers
                 Title = dto.Title,
                 Amount = dto.Amount,
                 Type = dto.Type,
-                CategoryId = dto.CategoryId,
-                UserId = dto.UserId
+                CategoryId = dto.CategoryId
             };
 
             var transactionId = await _mediator.Send(command);
@@ -34,10 +35,10 @@ namespace FinancialControl.Api.Controllers
             return CreatedAtAction(nameof(GetTransactionById), new { id = transactionId }, new { id = transactionId });
         }
 
-        [HttpGet("user/{userId}")]
-        public async Task<IActionResult> GetAllTransactions(Guid userId)
+        [HttpGet]
+        public async Task<IActionResult> GetAllTransactions()
         {
-            var query = new GetAllTransactionsQuery(userId);
+            var query = new GetAllTransactionsQuery();
 
             var transactions = await _mediator.Send(query);
 
