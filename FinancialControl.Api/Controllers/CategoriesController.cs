@@ -1,7 +1,7 @@
 ﻿using FinancialControl.Application.DTOs.Categories;
 using FinancialControl.Application.UseCases.Categories.Commands;
+using FinancialControl.Application.UseCases.Categories.Queries;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinancialControl.Api.Controllers
@@ -28,6 +28,16 @@ namespace FinancialControl.Api.Controllers
             var categoryId = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetCategoryById), new { id = categoryId }, new { id = categoryId });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllCategories()
+        {
+            var query = new GetAllCategoriesQuery();
+
+            var categories = await _mediator.Send(query);
+
+            return Ok(categories);
         }
 
         [HttpGet("{id}")]
