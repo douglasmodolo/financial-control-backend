@@ -31,10 +31,10 @@ O objetivo é fornecer uma base segura e robusta para gerenciar transações fin
 * **Gerenciamento de Transações:**
     * Criação de novas transações (receitas e despesas) associadas a uma categoria.
     * Listagem do extrato de transações do usuário logado, incluindo o nome da categoria.
-
+* **CRUD Completo:** Implementação das funcionalidades de **Atualizar (Update)** e **Deletar (Delete)** para Transações e Categorias.
+  
 ### 🚀 Funcionalidades Planejadas (Roadmap)
 
-* **CRUD Completo:** Implementação das funcionalidades de **Atualizar (Update)** e **Deletar (Delete)** para Transações e Categorias.
 * **Dashboard e Resumos:** Endpoints para consolidar dados, como:
     * Saldo atual do usuário.
     * Total de receitas vs. despesas por período (mês/ano).
