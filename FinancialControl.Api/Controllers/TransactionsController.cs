@@ -1,5 +1,6 @@
 ﻿using FinancialControl.Application.DTOs.Transactions;
 using FinancialControl.Application.UseCases.Transactions.Commands;
+using FinancialControl.Application.UseCases.Transactions.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +32,16 @@ namespace FinancialControl.Api.Controllers
             var transactionId = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetTransactionById), new { id = transactionId }, new { id = transactionId });
+        }
+
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GetAllTransactions(Guid userId)
+        {
+            var query = new GetAllTransactionsQuery(userId);
+
+            var transactions = await _mediator.Send(query);
+
+            return Ok(transactions);
         }
 
         [HttpGet("{id}")]
