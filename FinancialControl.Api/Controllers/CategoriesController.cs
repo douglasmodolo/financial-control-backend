@@ -46,5 +46,19 @@ namespace FinancialControl.Api.Controllers
         {
             return Ok();
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCategory(Guid id, [FromBody] UpdateCategoryDTO dto)
+        {
+            var command = new UpdateCategoryCommand
+            {
+                Id = id,
+                Name = dto.Name
+            };
+
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
     }
 }

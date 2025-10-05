@@ -16,5 +16,11 @@ namespace FinancialControl.Domain.Entities
 
         public User User { get; private set; }
         public ICollection<Transaction> Transactions { get; private set; } = new List<Transaction>();
+
+        public void Update(string name)
+        {
+            Name = name;
+            UpdatedAt = DateTime.UtcNow;
+        }
     }
 }
